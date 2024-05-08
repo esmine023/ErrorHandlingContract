@@ -1,24 +1,44 @@
-pragma solidity ^0.8.1;
+pragma solidity ^0.8.0;
 
 contract ErrorHandlingContract {
-    uint public value;
+    address public owner;
 
-    function setValue(uint _value) public {
-        require (_value > 0, "Value must be Greater than 0.");
-
-        assert(_value != value);
-
-        value = _value;
+    constructor() {
+        owner = msg.sender;
     }
 
-    function performDivision(uint _numerator, uint _denominator) public pure returns (uint) {
-        require(_denominator !=0, "Cannot divide by zero.");
+    // Function to transfer Ether to a specified address
+    function transferEther(address _receiver, uint256 _amount) external {
+        // Require that the sender is the owner of the contract
+        require(msg.sender == owner, "Only the owner can transfer Ether");
+        
+        // Require that the receiver address is not the zero address
+        require(_receiver != address(0), "Invalid receiver address");
 
-        if (_numerator % _denominator !=0) {
-            revert("Numerator must be divisable by Denominator");
+        // Require that the contract has enough Ether to transfer
+        require(address(this).balance >= _amount, "Insufficient balance");
+
+        // Transfer Ether to the specified address
+        payable(_receiver).transfer(_amount);
+    }
+
+    // Function to assert a condition
+    function assertCondition(uint256 _value) external pure returns (uint256) {
+        // Assert that the value is not zero
+        assert(_value != 0);
+        
+        // Return the value multiplied by 2
+        return _value * 2;
+    }
+
+    // Function to demonstrate reverting
+    function revertFunction(uint256 _input) external pure returns (uint256) {
+        // Revert if the input is zero
+        if (_input == 0) {
+            revert("Input cannot be zero");
         }
-
-        return _numerator/ _denominator;
-
+        
+        // Otherwise, return the input multiplied by 2
+        return _input * 2;
     }
 }
