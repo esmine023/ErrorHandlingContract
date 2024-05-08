@@ -76,9 +76,9 @@ This is the whole functionality within the code itself and the generalization of
 ## Running the Code
 4th thing you'll need to do is deploy and run tab which is located below at the solidity compiler button. with it opening, you'll see the orange button that says deploy which grants you to see if your token is available or not. You'll have to test the waters a.k.a the tokens(abbrv, name, and total supply buttons) within the 'deployed contracts')
 
-You'll need to set your values more than once to assess if the code is working, the requirements being -1 and 10 or more numbers
+You'll need to set your values more than once to assess if the code is working, the requirements tha can be multiplied by two and 'cannot be zero'
 
-The divisible requires the numerator to be at least lower than denominator, that will determine if the code is working functionally.
+The multiplication process requires to be multiplicated by any number than 2 ore more, that will determine if the code is working functionally.
 
   ### Advice
    Any advice can ask @ the discord with faith/Chris as my guide!
